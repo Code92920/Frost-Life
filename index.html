@@ -3,46 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Out Town RP | أوت تاون حياة واقعية</title>
+    <title>Out Town RP | أوت تاون</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
-        body { font-family: 'Tajawal', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* خلفية الموقع */
+        :root {
+            --primary-red: #e63946;
+            --bg-white: #ffffff;
+            --text-dark: #1a1a1a;
+        }
+
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background-color: var(--bg-white); 
+            color: var(--text-dark); 
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
+        }
+        
+        /* الهيرو سيكشن - خلفية مع تظليل أحمر خفيف */
         .hero-bg { 
-            background: linear-gradient(rgba(10, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), 
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95)), 
             url('https://i.imgur.com/QlbAHU1.png'); 
             background-size: cover; background-position: center; background-attachment: fixed;
         }
 
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); }
-        .red-gradient { background: linear-gradient(90deg, #ff0000 0%, #8b0000 100%); }
+        .glass-red { background: rgba(230, 57, 70, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(230, 57, 70, 0.1); }
+        .red-gradient { background: linear-gradient(90deg, #ff0000 0%, #b91c1c 100%); }
         
-        /* شريط حالة السيرفر */
-        .status-dot { height: 8px; width: 8px; background-color: #10b981; border-radius: 50%; display: inline-block; margin-left: 8px; box-shadow: 0 0 10px #10b981; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        /* القوانين المنسدلة - ثيم أبيض وأحمر */
+        .accordion-item { background: #f9f9f9; border: 1px solid #eee; border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: 0.3s; }
+        .accordion-item:hover { border-color: var(--primary-red); }
+        .accordion-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--text-dark); }
+        .accordion-content { max-height: 0; padding: 0 20px; transition: all 0.3s ease-out; color: #555; font-size: 0.95rem; line-height: 1.8; overflow: hidden; }
+        .active .accordion-content { max-height: 500px; padding: 20px; border-top: 1px solid #eee; }
+        .active .fa-plus { transform: rotate(45deg); color: var(--primary-red); }
 
-        /* تنسيق القوانين المنسدلة (مطابق لصورة ريسبكت) */
-        .accordion-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
-        .accordion-header { padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; font-weight: 700; color: #fff; font-size: 1.1rem; }
-        .accordion-content { max-height: 0; padding: 0 25px; transition: all 0.4s ease-in-out; color: #ccc; font-size: 0.95rem; line-height: 1.8; overflow: hidden; background: rgba(0,0,0,0.2); }
-        .active .accordion-content { max-height: 600px; padding: 20px 25px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .active .fa-plus { display: none; }
-        .fa-minus { display: none; }
-        .active .fa-minus { display: inline-block; color: #ff0000; }
+        /* كروت صناع المحتوى - JZ & Cfw */
+        .creator-card { background: #fff; border-radius: 20px; padding: 25px; transition: 0.4s; border: 1px solid #eee; text-align: center; width: 240px; }
+        .creator-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(230, 57, 70, 0.1); border-color: var(--primary-red); }
+        .creator-img-wrap { width: 110px; height: 110px; margin: 0 auto 15px; border-radius: 50%; border: 3px solid var(--primary-red); padding: 4px; display: flex; align-items: center; justify-content: center; background: #fff; }
+        .creator-img-wrap img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
         /* مشغل الموسيقى */
-        .music-player { position: fixed; bottom: 20px; left: 20px; z-index: 100; background: rgba(0,0,0,0.85); padding: 10px 18px; border-radius: 50px; border: 1px solid #ff0000; display: flex; align-items: center; gap: 10px; box-shadow: 0 0 20px rgba(255, 0, 0, 0.2); }
+        .music-player { position: fixed; bottom: 20px; left: 20px; z-index: 100; background: #fff; padding: 10px 20px; border-radius: 50px; border: 2px solid var(--primary-red); display: flex; align-items: center; gap: 10px; color: var(--primary-red); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
-        /* تنسيق كرت صانع المحتوى (مطابق للطلب) */
-        .creator-card { background: #0a0a0a; border-radius: 20px; padding: 30px 20px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; border: 1px solid rgba(255,255,255,0.03); width: 220px; display: inline-block; }
-        .creator-card:hover { transform: translateY(-10px); border-color: #6366f1; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2); }
-        .creator-img-wrap { width: 110px; height: 110px; margin: 0 auto 15px; border-radius: 50%; border: 3px solid #6366f1; padding: 4px; position: relative; display: flex; align-items: center; justify-content: center; background: #111; }
-        .creator-img-wrap img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .creator-name { font-size: 1.5rem; font-weight: 900; color: #fff; margin-bottom: 4px; display: block; }
-        .creator-title { font-size: 0.85rem; color: #555; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        /* حالة السيرفر */
+        .status-dot { height: 10px; width: 10px; background-color: #10b981; border-radius: 50%; display: inline-block; margin-left: 8px; box-shadow: 0 0 10px #10b981; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -51,124 +61,115 @@
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="music-player shadow-2xl">
-        <button onclick="toggleMusic()" id="musicBtn" class="text-white hover:text-red-500 transition">
+    <div class="music-player">
+        <button onclick="toggleMusic()" id="musicBtn" class="hover:scale-110 transition">
             <i class="fas fa-play" id="musicIcon"></i>
         </button>
-        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Background Music</span>
+        <span class="text-[10px] font-black uppercase tracking-widest">Out Town Radio</span>
     </div>
 
-    <nav class="fixed w-full z-50 glass py-4 px-6 md:px-12 flex justify-between items-center border-b border-white/5">
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md py-4 px-6 md:px-12 flex justify-between items-center border-b border-gray-100">
         <div class="flex flex-col">
-            <div class="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none italic">
+            <div class="text-2xl font-black italic tracking-tighter uppercase leading-none">
                 <span class="text-red-600">OUT</span> TOWN
             </div>
             <div class="flex items-center mt-1">
                 <span class="status-dot"></span>
-                <span class="text-[9px] font-bold text-emerald-500 uppercase tracking-widest">Server Online</span>
+                <span class="text-[9px] font-bold text-emerald-600 uppercase">Server Online</span>
             </div>
         </div>
-        <div class="hidden md:flex gap-8 font-bold text-[10px] uppercase tracking-[0.2em]">
-            <a href="#rules-rp" class="hover:text-red-500 transition">القوانين</a>
-            <a href="#creators" class="hover:text-red-500 transition">صناع المحتوى</a>
-            <a href="#apply" class="hover:text-red-500 transition">تقديم الوظائف</a>
+        <div class="hidden md:flex gap-8 font-bold text-[10px] uppercase tracking-widest text-gray-600">
+            <a href="#rules" class="hover:text-red-600 transition">القوانين</a>
+            <a href="#creators" class="hover:text-red-600 transition">صناع المحتوى</a>
+            <a href="#apply" class="hover:text-red-600 transition">التقديمات</a>
         </div>
-        <a href="https://discord.gg/NxyANrAtXT" target="_blank" class="red-gradient px-6 py-2 rounded-lg font-black text-xs uppercase shadow-lg shadow-red-600/20">دخول الديسكورد</a>
+        <a href="https://discord.gg/NxyANrAtXT" target="_blank" class="red-gradient px-6 py-2 rounded-lg text-white font-black text-xs uppercase shadow-lg">ديسكورد</a>
     </nav>
 
     <section class="hero-bg h-screen flex flex-col justify-center items-center text-center px-6">
-        <div class="bg-red-600 text-white text-[10px] font-black px-4 py-1 rounded-full mb-6 tracking-[0.2em] uppercase shadow-xl">ROBLOX ROLEPLAY SERVER</div>
-        <h1 class="text-6xl md:text-9xl font-black mb-6 tracking-tighter uppercase italic">OUT TOWN</h1>
-        <div class="max-w-2xl text-gray-200 text-lg md:text-xl font-bold mb-10 leading-relaxed">
-            مرحباً بك في بيتك الثاني. نقدم لك أفضل جودة من عالم الرول بلاي المتطور في روبلوكس، بأنظمة واقعية ورقابة مستمرة 24/7.
+        <div class="border-2 border-red-600 text-red-600 text-[10px] font-black px-4 py-1 rounded-full mb-6 uppercase tracking-widest">Roblox RP Excellence</div>
+        <h1 class="text-7xl md:text-9xl font-black mb-6 tracking-tighter uppercase italic text-gray-900">OUT TOWN</h1>
+        <div class="max-w-2xl bg-white/50 p-6 rounded-2xl">
+            <p class="text-gray-700 text-lg md:text-xl font-bold leading-relaxed">
+                مرحباً بك في بيتك الثاني. نقدم لك أفضل جودة من عالم الرول بلاي المتطور في روبلوكس، بأنظمة واقعية ورقابة مستمرة 24/7.
+            </p>
         </div>
-        <div class="flex flex-col md:flex-row gap-4">
-            <a href="#rules-rp" class="bg-white text-black px-12 py-4 rounded-xl font-black uppercase text-sm hover:scale-105 transition-all shadow-xl">دستور المدينة</a>
-            <a href="#creators" class="glass text-white px-12 py-4 rounded-xl font-black uppercase text-sm border border-white/10 hover:bg-white/5 transition-all">استكشف الأنظمة</a>
+        <div class="flex gap-4 mt-10">
+            <a href="#rules" class="red-gradient text-white px-10 py-4 rounded-xl font-black uppercase text-sm shadow-xl hover:scale-105 transition">دستور المدينة</a>
+            <a href="#creators" class="bg-white text-red-600 border-2 border-red-600 px-10 py-4 rounded-xl font-black uppercase text-sm hover:bg-red-50 transition">استكشف الميديا</a>
         </div>
     </section>
 
-    <section id="rules-rp" class="py-24 px-6 bg-[#030303]">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-black mb-4 italic text-white uppercase tracking-tighter">القوانين</h2>
-            <p class="text-gray-500 mb-12 italic text-sm">يجب ان يكون لديك اطلاع كامل على قوانين ريسبكت</p>
-            <div class="accordion text-right">
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)"><span>قوانين الحياة الجديدة - NLR</span><i class="fas fa-plus"></i><i class="fas fa-minus"></i></div>
-                    <div class="accordion-content">في حال اغمائك بشكل كامل لا يمكنك الكلام او الحركة او فعل أي شيء في حال تم اسقاطك من قبل شخص وتم انعاشك من قبل مسعفين تستطيع تذكر جميع الاحداث في حال تم اعطائك ابرة "في العيادة الخاصة" من احد اللاعبين الذين لديهم عداوة معك لا تستطيع تذكر أي شي حصل لك ( منها العداوات او الاحداث )</div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)"><span>الباور جيمنج - PowerGaming</span><i class="fas fa-plus"></i><i class="fas fa-minus"></i></div>
-                    <div class="accordion-content">استخدام ميكانيكيات اللعبة للقيام بأفعال مستحيلة في الواقع أو تجاهل إصاباتك كأنها لم تكن.</div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)"><span>الخوف على الحياة - NVL</span><i class="fas fa-plus"></i><i class="fas fa-minus"></i></div>
-                    <div class="accordion-content">يجب تمثيل الخوف إذا تم تهديدك بسلاح، حياتك هي أهم ما تملك في الرول بلاي.</div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)"><span>الميتا جيمنج - Metagaming</span><i class="fas fa-plus"></i><i class="fas fa-minus"></i></div>
-                    <div class="accordion-content">يمنع منعاً باتاً استخدام معلومات عرفتها خارج اللعبة (مثل الديسكورد) لاستخدامها داخل أحداث اللعبة.</div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)"><span>القتل العشوائي - RDM</span><i class="fas fa-plus"></i><i class="fas fa-minus"></i></div>
-                    <div class="accordion-content">يُمنع قتل أي مواطن دون سبب مقنع ودون تفاعل رول بلاي مسبق يبرر هذا الفعل.</div>
-                </div>
+    <section id="rules" class="py-24 px-6 max-w-4xl mx-auto">
+        <h2 class="text-4xl font-black mb-12 text-center italic uppercase text-red-600 underline decoration-gray-200 underline-offset-8">القوانين الأساسية</h2>
+        <div class="accordion text-right">
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)"><span>قوانين الحياة الجديدة - NLR</span><i class="fas fa-plus"></i></div>
+                <div class="accordion-content">في حال اغمائك بشكل كامل لا يمكنك الكلام او الحركة او فعل أي شيء. في حال تم اسقاطك من قبل شخص وتم انعاشك من قبل مسعفين تستطيع تذكر جميع الاحداث إلا في حال تم اعطائك ابرة "في العيادة الخاصة" لا تستطيع تذكر أي شي حصل لك.</div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)"><span>الباور جيمنج - PowerGaming</span><i class="fas fa-plus"></i></div>
+                <div class="accordion-content">يُمنع فعل أشياء غير منطقية أو خارقة للعادة لا يمكن القيام بها في الحياة الواقعية.</div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)"><span>الخوف على الحياة - NVL</span><i class="fas fa-plus"></i></div>
+                <div class="accordion-content">يجب أن تُظهر الخوف على حياتك عندما تكون مهدداً بسلاح أو في موقف خطر.</div>
             </div>
         </div>
     </section>
 
-    <section id="creators" class="py-24 px-6 text-center">
-        <h2 class="text-4xl font-black mb-16 italic text-white uppercase tracking-tighter">صناع المحتوى</h2>
-        <div class="flex flex-wrap justify-center gap-8">
-            <a href="https://www.tiktok.com/@rt_ahm1?_r=1&_t=ZS-93OEpKljXRo" target="_blank" class="creator-card">
-                <div class="creator-img-wrap shadow-[0_0_20px_rgba(99,102,241,0.3)]">
-                    <img src="https://i.imgur.com/IBUay75.png" alt="JZ Profile">
+    <section id="creators" class="py-24 px-6 bg-gray-50">
+        <h2 class="text-4xl font-black mb-16 text-center italic uppercase text-red-600">صناع المحتوى</h2>
+        <div class="flex flex-wrap justify-center gap-10">
+            <a href="https://www.tiktok.com/@rt_ahm1" target="_blank" class="creator-card">
+                <div class="creator-img-wrap">
+                    <img src="https://i.imgur.com/IBUay75.png" alt="JZ">
                 </div>
-                <span class="creator-name">JZ</span>
-                <span class="creator-title">Creator</span>
+                <h3 class="font-black text-xl text-gray-900">JZ</h3>
+                <p class="text-red-600 text-xs font-bold mt-1 tracking-widest uppercase">Tiktok Creator</p>
+            </a>
+
+            <a href="https://youtube.com/@ot_cfw?si=ZWxAhf9GPwIg6DDW" target="_blank" class="creator-card">
+                <div class="creator-img-wrap">
+                    <img src="https://i.imgur.com/IBUay75.png" alt="OutTown | Cfw"> 
+                </div>
+                <h3 class="font-black text-xl text-gray-900">OutTown | Cfw</h3>
+                <p class="text-red-600 text-xs font-bold mt-1 tracking-widest uppercase">YouTube Channel</p>
             </a>
         </div>
     </section>
 
     <section id="apply" class="py-24 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-black mb-16 text-center italic uppercase text-red-600 tracking-tighter">تقديم الوظائف</h2>
+        <h2 class="text-4xl font-black mb-16 text-center italic uppercase text-red-600">بوابة التوظيف</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass p-10 rounded-3xl text-center border-t-4 border-blue-600 transition-all hover:-translate-y-2">
-                <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
-                <h3 class="font-bold mb-4 uppercase">جهاز الشرطة</h3>
-                <p class="text-gray-500 text-xs mb-6 font-bold leading-relaxed">كن حامي المدينة والدرع الأول ضد الجريمة، تدريبات عسكرية وأنظمة ضبط متطورة.</p>
-                <a href="https://discord.com/channels/1417513050034012172/1463671390052814961" target="_blank" class="block w-full py-3 bg-blue-600 rounded-xl font-black text-xs uppercase shadow-lg">تقديم الآن</a>
+            <div class="bg-blue-600 p-10 rounded-3xl text-center text-white shadow-2xl transition hover:-translate-y-2">
+                <i class="fas fa-shield-alt text-4xl mb-4"></i>
+                <h3 class="font-black mb-4 uppercase">جهاز الشرطة</h3>
+                <a href="https://discord.com/channels/1417513050034012172/1463671390052814961" target="_blank" class="block w-full py-3 bg-white text-blue-600 rounded-xl font-black text-xs uppercase">تقديم الآن</a>
             </div>
-            <div class="glass p-10 rounded-3xl text-center border-t-4 border-red-600 transition-all hover:-translate-y-2">
-                <i class="fas fa-heartbeat text-4xl text-red-600 mb-4"></i>
-                <h3 class="font-bold mb-4 uppercase">وزارة الصحة</h3>
-                <p class="text-gray-500 text-xs mb-6 font-bold leading-relaxed">أنقذ الأرواح في أصعب الظروف، طاقم طبي متكامل وسيارات إسعاف مجهزة بالكامل.</p>
-                <a href="https://discord.com/channels/1417513050034012172/1463671392619860069" target="_blank" class="block w-full py-3 bg-red-600 rounded-xl font-black text-xs uppercase shadow-lg">تقديم الآن</a>
+            <div class="bg-red-600 p-10 rounded-3xl text-center text-white shadow-2xl transition hover:-translate-y-2">
+                <i class="fas fa-heartbeat text-4xl mb-4"></i>
+                <h3 class="font-black mb-4 uppercase">وزارة الصحة</h3>
+                <a href="https://discord.com/channels/1417513050034012172/1463671392619860069" target="_blank" class="block w-full py-3 bg-white text-red-600 rounded-xl font-black text-xs uppercase">تقديم الآن</a>
             </div>
-            <div class="glass p-10 rounded-3xl text-center border-t-4 border-pink-600 transition-all hover:-translate-y-2">
-                <i class="fas fa-video text-4xl text-pink-600 mb-4"></i>
-                <h3 class="font-bold mb-4 uppercase">صناع المحتوى</h3>
-                <p class="text-gray-500 text-xs mb-6 font-bold leading-relaxed">نقدم الدعم والتميز لكل مبدع يبث فعالياتنا، بادر بالتقديم للحصول على رتبة ميديا.</p>
-                <a href="https://discord.com/channels/1417513050034012172/1465031961004478585" target="_blank" class="block w-full py-3 bg-pink-600 rounded-xl font-black text-xs uppercase shadow-lg">تقديم الآن</a>
+            <div class="bg-purple-600 p-10 rounded-3xl text-center text-white shadow-2xl transition hover:-translate-y-2">
+                <i class="fas fa-video text-4xl mb-4"></i>
+                <h3 class="font-black mb-4 uppercase">صناع المحتوى</h3>
+                <a href="https://discord.com/channels/1417513050034012172/1465031961004478585" target="_blank" class="block w-full py-3 bg-white text-purple-600 rounded-xl font-black text-xs uppercase">تقديم الآن</a>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center border-t border-white/5 bg-[#030303]">
-        <h2 class="text-3xl font-black mb-2 tracking-widest text-red-600 italic">OUT TOWN</h2>
-        <p class="text-gray-700 text-[10px] uppercase font-bold">Welcome to Out Town Roleplay © 2026 | All Rights Reserved</p>
+    <footer class="py-12 text-center border-t border-gray-100 bg-white">
+        <div class="text-3xl font-black text-red-600 italic mb-2">OUT TOWN</div>
+        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-tighter">© 2026 Out Town Roleplay | All Rights Reserved</p>
     </footer>
 
     <script>
         function toggleAccordion(element) {
             const item = element.parentElement;
-            const isActive = item.classList.contains('active');
-            
-            // إغلاق أي قائمة مفتوحة أخرى
-            document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
-            
-            // فتح القائمة المضغوطة إذا كانت مغلقة
-            if (!isActive) item.classList.add('active');
+            item.classList.toggle('active');
+            document.querySelectorAll('.accordion-item').forEach(i => { if (i !== item) i.classList.remove('active'); });
         }
 
         const audio = document.getElementById('bgMusic');
