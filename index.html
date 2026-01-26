@@ -8,47 +8,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+        body { font-family: 'Tajawal', sans-serif; background-color: #0c0014; color: white; scroll-behavior: smooth; }
         
-        :root {
-            --primary-red: #e63946;
-            --bg-white: #ffffff;
-            --text-dark: #1a1a1a;
-        }
-
-        body { 
-            font-family: 'Tajawal', sans-serif; 
-            background-color: var(--bg-white); 
-            color: var(--text-dark); 
-            scroll-behavior: smooth; 
-            overflow-x: hidden;
-        }
+        /* تصميم كرت صانع المحتوى JZ مطابق للصورة */
+        .creator-card { background: #0c0c0c; border-radius: 20px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); text-align: center; width: 220px; transition: 0.3s; }
+        .creator-card:hover { transform: translateY(-5px); border-color: #6366f1; }
+        .creator-img-ring { width: 100px; height: 100px; margin: 0 auto 15px; border-radius: 50%; border: 3px solid #6366f1; padding: 4px; display: flex; align-items: center; justify-content: center; }
+        .creator-img-ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
         
-        /* الهيرو سيكشن - خلفية مع تظليل أحمر خفيف */
-        .hero-bg { 
-            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95)), 
-            url('https://i.imgur.com/QlbAHU1.png'); 
-            background-size: cover; background-position: center; background-attachment: fixed;
-        }
-
-        .glass-red { background: rgba(230, 57, 70, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(230, 57, 70, 0.1); }
-        .red-gradient { background: linear-gradient(90deg, #ff0000 0%, #b91c1c 100%); }
-        
-        /* القوانين المنسدلة - ثيم أبيض وأحمر */
-        .accordion-item { background: #f9f9f9; border: 1px solid #eee; border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: 0.3s; }
-        .accordion-item:hover { border-color: var(--primary-red); }
-        .accordion-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--text-dark); }
-        .accordion-content { max-height: 0; padding: 0 20px; transition: all 0.3s ease-out; color: #555; font-size: 0.95rem; line-height: 1.8; overflow: hidden; }
-        .active .accordion-content { max-height: 500px; padding: 20px; border-top: 1px solid #eee; }
-        .active .fa-plus { transform: rotate(45deg); color: var(--primary-red); }
-
-        /* كروت صناع المحتوى - JZ & Cfw */
-        .creator-card { background: #fff; border-radius: 20px; padding: 25px; transition: 0.4s; border: 1px solid #eee; text-align: center; width: 240px; }
-        .creator-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(230, 57, 70, 0.1); border-color: var(--primary-red); }
-        .creator-img-wrap { width: 110px; height: 110px; margin: 0 auto 15px; border-radius: 50%; border: 3px solid var(--primary-red); padding: 4px; display: flex; align-items: center; justify-content: center; background: #fff; }
-        .creator-img-wrap img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-
-        /* مشغل الموسيقى */
-        .music-player { position: fixed; bottom: 20px; left: 20px; z-index: 100; background: #fff; padding: 10px 20px; border-radius: 50px; border: 2px solid var(--primary-red); display: flex; align-items: center; gap: 10px; color: var(--primary-red); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* تصميم القوانين المنسدلة مطابق لصور ريسبكت */
+        .accordion-item { background: rgba(255, 255, 255, 0.03); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+        .accordion-header { padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #1a0a2e; font-weight: bold; }
+        .accordion-content { max-height: 0; padding: 0 20px; transition: 0.3s ease-out; color: #bbb; font-size: 0.9rem; overflow: hidden; line-height: 1.6; }
+        .active .accordion-content { max-height: 500px; padding: 15px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
         
         /* حالة السيرفر */
         .status-dot { height: 10px; width: 10px; background-color: #10b981; border-radius: 50%; display: inline-block; margin-left: 8px; box-shadow: 0 0 10px #10b981; animation: pulse 1.5s infinite; }
@@ -57,127 +29,45 @@
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgMusic" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg"></audio>
 
-    <div class="music-player">
-        <button onclick="toggleMusic()" id="musicBtn" class="hover:scale-110 transition">
-            <i class="fas fa-play" id="musicIcon"></i>
-        </button>
-        <span class="text-[10px] font-black uppercase tracking-widest">Out Town Radio</span>
-    </div>
-
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md py-4 px-6 md:px-12 flex justify-between items-center border-b border-gray-100">
+    <nav class="fixed w-full z-50 bg-[#0c0014]/80 backdrop-blur-md py-4 px-12 flex justify-between items-center border-b border-white/5">
         <div class="flex flex-col">
-            <div class="text-2xl font-black italic tracking-tighter uppercase leading-none">
-                <span class="text-red-600">OUT</span> TOWN
-            </div>
-            <div class="flex items-center mt-1">
-                <span class="status-dot"></span>
-                <span class="text-[9px] font-bold text-emerald-600 uppercase">Server Online</span>
-            </div>
+            <div class="text-2xl font-black italic"><span class="text-red-600">OUT</span> TOWN</div>
+            <div class="flex items-center mt-1"><span class="status-dot"></span><span class="text-[10px] text-emerald-500 font-bold uppercase">Server Online</span></div>
         </div>
-        <div class="hidden md:flex gap-8 font-bold text-[10px] uppercase tracking-widest text-gray-600">
-            <a href="#rules" class="hover:text-red-600 transition">القوانين</a>
-            <a href="#creators" class="hover:text-red-600 transition">صناع المحتوى</a>
-            <a href="#apply" class="hover:text-red-600 transition">التقديمات</a>
-        </div>
-        <a href="https://discord.gg/NxyANrAtXT" target="_blank" class="red-gradient px-6 py-2 rounded-lg text-white font-black text-xs uppercase shadow-lg">ديسكورد</a>
+        <a href="https://discord.gg/NxyANrAtXT" target="_blank" class="bg-red-600 px-6 py-2 rounded-lg font-bold text-xs uppercase shadow-lg shadow-red-600/30">دخول الديسكورد</a>
     </nav>
 
-    <section class="hero-bg h-screen flex flex-col justify-center items-center text-center px-6">
-        <div class="border-2 border-red-600 text-red-600 text-[10px] font-black px-4 py-1 rounded-full mb-6 uppercase tracking-widest">Roblox RP Excellence</div>
-        <h1 class="text-7xl md:text-9xl font-black mb-6 tracking-tighter uppercase italic text-gray-900">OUT TOWN</h1>
-        <div class="max-w-2xl bg-white/50 p-6 rounded-2xl">
-            <p class="text-gray-700 text-lg md:text-xl font-bold leading-relaxed">
-                مرحباً بك في بيتك الثاني. نقدم لك أفضل جودة من عالم الرول بلاي المتطور في روبلوكس، بأنظمة واقعية ورقابة مستمرة 24/7.
-            </p>
-        </div>
-        <div class="flex gap-4 mt-10">
-            <a href="#rules" class="red-gradient text-white px-10 py-4 rounded-xl font-black uppercase text-sm shadow-xl hover:scale-105 transition">دستور المدينة</a>
-            <a href="#creators" class="bg-white text-red-600 border-2 border-red-600 px-10 py-4 rounded-xl font-black uppercase text-sm hover:bg-red-50 transition">استكشف الميديا</a>
-        </div>
+    <section class="h-screen flex flex-col justify-center items-center text-center px-6" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(12,0,20,1)), url('https://i.imgur.com/QlbAHU1.png'); background-size: cover; background-position: center;">
+        <h1 class="text-7xl md:text-9xl font-black mb-6 italic uppercase">OUT TOWN</h1>
+        <p class="text-gray-300 max-w-2xl text-lg font-bold">مرحباً بك في بيتك الثاني. نقدم لك أفضل جودة من عالم الرول بلاي المتطور في روبلوكس، بأنظمة واقعية ورقابة مستمرة 24/7.</p>
     </section>
 
-    <section id="rules" class="py-24 px-6 max-w-4xl mx-auto">
-        <h2 class="text-4xl font-black mb-12 text-center italic uppercase text-red-600 underline decoration-gray-200 underline-offset-8">القوانين الأساسية</h2>
-        <div class="accordion text-right">
+    <section class="py-20 px-6 max-w-4xl mx-auto">
+        <h2 class="text-4xl font-black text-center mb-10 text-red-600 italic">القوانين</h2>
+        <div class="accordion">
             <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)"><span>قوانين الحياة الجديدة - NLR</span><i class="fas fa-plus"></i></div>
+                <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')"><span>قوانين الحياة الجديدة - NLR</span><i class="fas fa-plus"></i></div>
                 <div class="accordion-content">في حال اغمائك بشكل كامل لا يمكنك الكلام او الحركة او فعل أي شيء. في حال تم اسقاطك من قبل شخص وتم انعاشك من قبل مسعفين تستطيع تذكر جميع الاحداث إلا في حال تم اعطائك ابرة "في العيادة الخاصة" لا تستطيع تذكر أي شي حصل لك.</div>
             </div>
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)"><span>الباور جيمنج - PowerGaming</span><i class="fas fa-plus"></i></div>
-                <div class="accordion-content">يُمنع فعل أشياء غير منطقية أو خارقة للعادة لا يمكن القيام بها في الحياة الواقعية.</div>
             </div>
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)"><span>الخوف على الحياة - NVL</span><i class="fas fa-plus"></i></div>
-                <div class="accordion-content">يجب أن تُظهر الخوف على حياتك عندما تكون مهدداً بسلاح أو في موقف خطر.</div>
-            </div>
-        </div>
     </section>
 
-    <section id="creators" class="py-24 px-6 bg-gray-50">
-        <h2 class="text-4xl font-black mb-16 text-center italic uppercase text-red-600">صناع المحتوى</h2>
-        <div class="flex flex-wrap justify-center gap-10">
+    <section class="py-20 px-6 text-center bg-[#080010]">
+        <h2 class="text-4xl font-black mb-16 italic uppercase text-red-600">صناع المحتوى</h2>
+        <div class="flex justify-center">
             <a href="https://www.tiktok.com/@rt_ahm1" target="_blank" class="creator-card">
-                <div class="creator-img-wrap">
-                    <img src="https://i.imgur.com/IBUay75.png" alt="JZ">
-                </div>
-                <h3 class="font-black text-xl text-gray-900">JZ</h3>
-                <p class="text-red-600 text-xs font-bold mt-1 tracking-widest uppercase">Tiktok Creator</p>
-            </a>
-
-            <a href="https://youtube.com/@ot_cfw?si=ZWxAhf9GPwIg6DDW" target="_blank" class="creator-card">
-                <div class="creator-img-wrap">
-                    <img src="https://i.imgur.com/IBUay75.png" alt="OutTown | Cfw"> 
-                </div>
-                <h3 class="font-black text-xl text-gray-900">OutTown | Cfw</h3>
-                <p class="text-red-600 text-xs font-bold mt-1 tracking-widest uppercase">YouTube Channel</p>
+                <div class="creator-img-ring"><img src="https://i.imgur.com/IBUay75.png" alt="JZ"></div>
+                <div class="creator-name">JZ</div>
+                <div class="creator-title text-gray-500 text-xs">Creator</div>
             </a>
         </div>
     </section>
-
-    <section id="apply" class="py-24 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-black mb-16 text-center italic uppercase text-red-600">بوابة التوظيف</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-blue-600 p-10 rounded-3xl text-center text-white shadow-2xl transition hover:-translate-y-2">
-                <i class="fas fa-shield-alt text-4xl mb-4"></i>
-                <h3 class="font-black mb-4 uppercase">جهاز الشرطة</h3>
-                <a href="https://discord.com/channels/1417513050034012172/1463671390052814961" target="_blank" class="block w-full py-3 bg-white text-blue-600 rounded-xl font-black text-xs uppercase">تقديم الآن</a>
-            </div>
-            <div class="bg-red-600 p-10 rounded-3xl text-center text-white shadow-2xl transition hover:-translate-y-2">
-                <i class="fas fa-heartbeat text-4xl mb-4"></i>
-                <h3 class="font-black mb-4 uppercase">وزارة الصحة</h3>
-                <a href="https://discord.com/channels/1417513050034012172/1463671392619860069" target="_blank" class="block w-full py-3 bg-white text-red-600 rounded-xl font-black text-xs uppercase">تقديم الآن</a>
-            </div>
-            <div class="bg-purple-600 p-10 rounded-3xl text-center text-white shadow-2xl transition hover:-translate-y-2">
-                <i class="fas fa-video text-4xl mb-4"></i>
-                <h3 class="font-black mb-4 uppercase">صناع المحتوى</h3>
-                <a href="https://discord.com/channels/1417513050034012172/1465031961004478585" target="_blank" class="block w-full py-3 bg-white text-purple-600 rounded-xl font-black text-xs uppercase">تقديم الآن</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 text-center border-t border-gray-100 bg-white">
-        <div class="text-3xl font-black text-red-600 italic mb-2">OUT TOWN</div>
-        <p class="text-gray-400 text-[10px] font-bold uppercase tracking-tighter">© 2026 Out Town Roleplay | All Rights Reserved</p>
-    </footer>
 
     <script>
-        function toggleAccordion(element) {
-            const item = element.parentElement;
-            item.classList.toggle('active');
-            document.querySelectorAll('.accordion-item').forEach(i => { if (i !== item) i.classList.remove('active'); });
-        }
-
-        const audio = document.getElementById('bgMusic');
-        const icon = document.getElementById('musicIcon');
-        function toggleMusic() {
-            if (audio.paused) { audio.play(); icon.classList.replace('fa-play', 'fa-pause'); }
-            else { audio.pause(); icon.classList.replace('fa-pause', 'fa-play'); }
-        }
+        // تفعيل الموسيقى عند أول ضغطة
+        document.body.addEventListener('click', () => { document.getElementById('bgMusic').play(); }, {once: true});
     </script>
 </body>
 </html>
