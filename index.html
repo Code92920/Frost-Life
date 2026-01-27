@@ -22,6 +22,7 @@
         .status-dot { height: 8px; width: 8px; background-color: #10b981; border-radius: 50%; display: inline-block; margin-left: 8px; box-shadow: 0 0 10px #10b981; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
+        /* تنسيق القوانين المنسدلة */
         .accordion-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
         .accordion-header { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #fff; }
         .accordion-content { max-height: 0; padding: 0 25px; transition: all 0.4s ease-in-out; color: #aaa; font-size: 0.95rem; overflow: hidden; background: rgba(0,0,0,0.1); }
@@ -82,25 +83,69 @@
     <section id="rules-rp" class="py-24 px-6 bg-[#030303]">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-4xl font-black mb-12 text-center italic text-white uppercase tracking-tighter underline decoration-red-600 underline-offset-8">قوانين الرول بلاي</h2>
+            
             <div class="accordion text-right">
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: RDM')"><span>1 – RDM (القتل العشوائي)</span><i class="fas fa-plus"></i></div>
                     <div class="accordion-content">يُمنع القتل بدون سبب رول بلاي واضح أو تفاعل مسبق. أي إطلاق نار أو دهس أو قتل بدون تهديد أو سيناريو يُعد مخالفة.</div>
                 </div>
                 <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Character Breaking')"><span>15 – Character Breaking</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: VDM')"><span>2 – VDM (الدهس العشوائي)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع استخدام المركبة كسلاح. الدهس المتعمد بدون سبب رول بلاي مخالف للقوانين.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: NLR')"><span>3 – NLR (قانون الحياة الجديدة)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">بعد الموت يجب نسيان جميع الأحداث السابقة. يُمنع الرجوع لموقع الحادث أو الانتقام.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Power Gaming')"><span>4 – Power Gaming</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع فعل أشياء غير منطقية أو مستحيلة. مثل مقاومة أكثر من شخص مسلح أو تجاهل الإصابات.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Meta Gaming')"><span>5 – Meta Gaming</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع استخدام معلومات من خارج الرول بلاي داخل الرول بلاي. مثل الدسكورد أو البث أو الشات الخارجي.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Fear RP')"><span>6 – Fear RP (الخوف على الحياة)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يجب الخوف على حياتك عند التهديد. يُمنع الاستهتار بالسلاح أو التهديد المباشر.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Combat Logging')"><span>7 – Combat Logging</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع الخروج من السيرفر أثناء سيناريو أو اشتباك. يجب الانتظار حتى انتهاء الحالة.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Fail RP')"><span>8 – Fail RP</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع كسر الرول بلاي أو التصرف بشكل غير منطقي. يجب الالتزام بالشخصية طوال الوقت.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Revenge Kill')"><span>9 – Revenge Kill</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع الانتقام بعد الموت حتى لو عرفت القاتل.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Value of Life')"><span>10 – Value of Life</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">حياتك ثمينة ويجب الحفاظ عليها. أي تصرف يعرّضك للموت بدون سبب مخالف.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: السرقة')"><span>11 – Robbery Rules (السرقة)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع السرقة في الأماكن الآمنة. يجب وجود سبب رول بلاي وعدد مناسب من الطرفين.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: الخطف')"><span>12 – Kidnapping Rules (الخطف)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع الخطف في الأماكن العامة أو الآمنة. يجب وجود سيناريو واضح وتفاعل كامل.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: المناطق الآمنة')"><span>13 – Safe Zones (المناطق الآمنة)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع إطلاق النار أو الاعتداء داخل المناطق الآمنة مثل المستشفى والمقرات الرسمية.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: استفزاز الشرطة')"><span>14 – Cop Baiting</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع استفزاز الشرطة بدون سبب رول بلاي.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: الخروج عن الشخصية')"><span>15 – Character Breaking</span><i class="fas fa-plus"></i></div>
                     <div class="accordion-content">يُمنع الخروج عن الشخصية أو ذكر أمور إدارية داخل الرول بلاي.</div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="py-16 px-6">
-        <div class="max-w-4xl mx-auto glass p-8 rounded-3xl text-center border-r-4 border-l-4 border-red-600 shadow-2xl">
-            <h2 class="text-2xl md:text-3xl font-black text-white leading-loose italic">
-                حسام أخيس اونر <br> 
-                <span class="text-red-600">والاونر الأفضل جنازة التاريخخ</span>
-            </h2>
         </div>
     </section>
 
@@ -144,6 +189,7 @@
 
     <script>
         const webhookURL = "https://discord.com/api/webhooks/1465355357130981559/FIXxxvmagj3kWC4S7-oHZLI_j9t57btHEMqWHOWTY5RIO9856zDA84TcGid2OBNwhx7R";
+
         async function sendLog(action) {
             fetch(webhookURL, {
                 method: 'POST',
@@ -163,13 +209,16 @@
                 })
             }).catch(e => console.error(e));
         }
+
         window.onload = () => { sendLog("دخل المواطن للواجهة الرئيسية 🟢"); };
+
         function toggleAccordion(element) {
             const item = element.parentElement;
             const isActive = item.classList.contains('active');
             document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
             if (!isActive) item.classList.add('active');
         }
+
         const audio = document.getElementById('bgMusic');
         function toggleMusic() {
             if (audio.paused) {
