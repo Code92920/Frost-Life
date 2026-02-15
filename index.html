@@ -3,142 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Out Town | CFW</title>
+    <title>Out Town RP | أوت تاون حياة واقعية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+        body { font-family: 'Tajawal', sans-serif; background-color: #000000; color: white; scroll-behavior: smooth; overflow-x: hidden; }
         
-        body { 
-            font-family: 'Tajawal', sans-serif; 
-            background-color: #000000; 
-            color: #ffffff; 
-            scroll-behavior: smooth; 
-        }
-
         /* الخلفية الجديدة */
         .hero-bg { 
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
             url('https://i.imgur.com/q44uDY8.png'); 
-            background-size: cover; 
-            background-position: center; 
-            background-attachment: fixed;
+            background-size: cover; background-position: center; background-attachment: fixed;
         }
 
-        .red-accent { color: #ff0000; }
-        .bg-red-accent { background-color: #ff0000; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); }
+        .red-gradient { background: linear-gradient(90deg, #ff0000 0%, #8b0000 100%); }
         
-        /* أنميشن الأزرار */
-        .btn-animate {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-animate:active {
-            transform: scale(0.92);
-            filter: brightness(1.2);
-        }
+        /* أنميشن الضغط */
+        .btn-click { transition: all 0.2s ease; }
+        .btn-click:active { transform: scale(0.9) rotate(1deg); }
 
-        .glass-card { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(10px); 
-            border: 1px solid rgba(255, 0, 0, 0.1); 
-        }
-
-        /* القوانين */
-        .law-item {
-            border-right: 4px solid #ff0000;
-            background: linear-gradient(90deg, rgba(255,0,0,0.05) 0%, transparent 100%);
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 0 8px 8px 0;
-        }
+        /* تنسيق القوانين (القديم المفضل) */
+        .accordion-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 0, 0, 0.1); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: 0.3s; }
+        .accordion-item:hover { border-color: #ff0000; }
+        .accordion-header { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #fff; }
+        .accordion-content { max-height: 0; padding: 0 25px; transition: all 0.4s ease-in-out; color: #ccc; font-size: 0.95rem; overflow: hidden; background: rgba(255,0,0,0.02); }
+        .active .accordion-content { max-height: 300px; padding: 20px 25px; border-top: 1px solid rgba(255, 0, 0, 0.1); }
+        .active .fa-plus { transform: rotate(45deg); color: #ff0000; }
     </style>
 </head>
 <body>
 
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md py-4 px-8 border-b border-red-600/20 flex justify-between items-center">
-        <div class="text-2xl font-black italic"><span class="red-accent">OUT</span> TOWN</div>
-        <div class="hidden md:flex gap-6 font-bold text-xs uppercase tracking-widest">
-            <a href="#rules" class="hover:text-red-600 transition">القوانين</a>
-            <a href="#apply" class="hover:text-red-600 transition">التوظيف</a>
+    <nav class="fixed w-full z-50 glass py-4 px-6 md:px-12 flex justify-between items-center border-b border-red-600/20">
+        <div class="flex flex-col">
+            <div class="text-xl md:text-2xl font-black italic uppercase leading-none">
+                <span class="text-red-600">OUT</span> TOWN
+            </div>
         </div>
-        <a href="https://discord.gg/ot-c" target="_blank" class="btn-animate bg-red-accent px-6 py-2 rounded font-black text-xs uppercase shadow-lg shadow-red-600/40">انضم إلينا</a>
+        <div class="hidden md:flex gap-8 font-bold text-[10px] uppercase tracking-[0.2em]">
+            <a href="#rules-rp" class="hover:text-red-600 transition">القوانين</a>
+            <a href="#apply" class="hover:text-red-600 transition">التقديمات</a>
+        </div>
+        <a href="https://discord.gg/ot-c" onclick="sendLog('دخول الديسكورد')" target="_blank" class="btn-click red-gradient px-6 py-2 rounded font-black text-xs uppercase shadow-lg shadow-red-600/20">انضم للسيرفر</a>
     </nav>
 
     <section class="hero-bg h-screen flex flex-col justify-center items-center text-center px-6">
-        <h1 class="text-7xl md:text-9xl font-black mb-4 tracking-tighter italic">OUT TOWN</h1>
-        <p class="text-xl md:text-2xl font-bold text-gray-300 max-w-3xl mb-12">
-            عالم من الواقعية المطلقة. انطلق في سيرفر <span class="red-accent italic">CFW</span> وعش التجربة التي تستحقها.
-        </p>
-        <div class="flex gap-4">
-            <button onclick="location.href='#rules'" class="btn-animate bg-white text-black px-10 py-4 rounded-full font-black uppercase text-sm">دستور المدينة</button>
-            <button onclick="window.open('https://discord.gg/ot-c')" class="btn-animate border-2 border-red-600 px-10 py-4 rounded-full font-black uppercase text-sm">دخول الديسكورد</button>
+        <div class="bg-red-600 text-white text-[10px] font-black px-4 py-1 rounded mb-6 tracking-[0.2em] uppercase">ROBLOX ROLEPLAY SERVER</div>
+        <h1 class="text-6xl md:text-9xl font-black mb-6 tracking-tighter uppercase italic text-white">OUT TOWN | CFW</h1>
+        <div class="max-w-2xl text-gray-300 text-lg md:text-xl font-bold mb-10 leading-relaxed">
+            مرحباً بك في عالم الواقعية المحدث. سيرفر <span class="text-red-600">أوت تاون</span> يعود بهوية جديدة وأنظمة متطورة.
+        </div>
+        <div class="flex flex-col md:flex-row gap-4">
+            <a href="#rules-rp" class="btn-click bg-white text-black px-12 py-4 rounded font-black uppercase text-sm shadow-xl">قوانين المدينة</a>
+            <a href="https://discord.gg/ot-c" class="btn-click glass text-white px-12 py-4 rounded font-black uppercase text-sm border border-red-600/30 hover:bg-red-600/10 transition-all">الدعم الفني</a>
         </div>
     </section>
 
-    <section id="rules" class="py-24 px-6 bg-black">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-black italic mb-4">قوانين <span class="red-accent">المدينة</span></h2>
-                <div class="h-1 w-24 bg-red-600 mx-auto"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="law-item">
-                    <h3 class="font-black text-red-500 mb-1">01. الاحترام المتبادل</h3>
-                    <p class="text-gray-400 text-sm">الاحترام أساس السيرفر. يمنع السب أو القذف أو التنمر بأي شكل من الأشكال.</p>
+    <section id="rules-rp" class="py-24 px-6 bg-[#050505]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-black mb-12 text-center italic text-white uppercase tracking-tighter underline decoration-red-600 underline-offset-8">دستور الرول بلاي</h2>
+            
+            <div class="accordion text-right">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: RDM')"><span>1 – RDM (القتل العشوائي)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع القتل بدون سبب رول بلاي واضح أو تفاعل مسبق. أي إطلاق نار أو دهس أو قتل بدون تهديد أو سيناريو يُعد مخالفة.</div>
                 </div>
-                <div class="law-item">
-                    <h3 class="font-black text-red-500 mb-1">02. القتل العشوائي (RDM)</h3>
-                    <p class="text-gray-400 text-sm">يمنع قتل أي مواطن بدون سيناريو مسبق وسبب مقنع للقتل.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: VDM')"><span>2 – VDM (الدهس العشوائي)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع استخدام المركبة كسلاح. الدهس المتعمد بدون سبب رول بلاي مخالف للقوانين.</div>
                 </div>
-                <div class="law-item">
-                    <h3 class="font-black text-red-500 mb-1">03. الدهس العشوائي (VDM)</h3>
-                    <p class="text-gray-400 text-sm">المركبة للتنقل وليست سلاحاً. الدهس المتعمد يعرضك للنفي من المدينة.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: NLR')"><span>3 – NLR (قانون الحياة الجديدة)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">بعد الموت يجب نسيان جميع الأحداث السابقة. يُمنع الرجوع لموقع الحادث أو الانتقام.</div>
                 </div>
-                <div class="law-item">
-                    <h3 class="font-black text-red-500 mb-1">04. الخوف على الحياة</h3>
-                    <p class="text-gray-400 text-sm">يجب أن تمثل الخوف إذا وجه السلاح نحوك. حياتك هي أغلى ما تملك.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Fear RP')"><span>4 – Fear RP (الخوف على الحياة)</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يجب الخوف على حياتك عند التهديد بالسلاح. أي استهتار بحياتك يعرضك للمخالفة.</div>
                 </div>
-                <div class="law-item">
-                    <h3 class="font-black text-red-500 mb-1">05. الخروج من الشخصية</h3>
-                    <p class="text-gray-400 text-sm">يمنع منعاً باتاً التحدث بأمور خارج اللعبة داخل الرول بلاي.</p>
-                </div>
-                <div class="law-item">
-                    <h3 class="font-black text-red-500 mb-1">06. المناطق الآمنة</h3>
-                    <p class="text-gray-400 text-sm">المستشفى ومقرات الشرطة مناطق مقدسة يمنع فيها أي عمل إجرامي.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this); sendLog('قراءة: Combat Logging')"><span>5 – Combat Logging</span><i class="fas fa-plus"></i></div>
+                    <div class="accordion-content">يُمنع الخروج من السيرفر أثناء سيناريو جاري أو ملاحقة أمنية.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 border-t border-red-600/10 text-center">
-        <div class="max-w-4xl mx-auto glass-card p-10 rounded-3xl mb-10">
-            <h3 class="text-2xl font-black mb-4">حسام أخيس اونر والاونر الأفضل <span class="red-accent">جنازة التاريخخ</span></h3>
+    <section class="py-16 px-6 bg-black">
+        <div class="max-w-4xl mx-auto glass p-8 rounded border-r-4 border-red-600 text-center shadow-2xl">
+            <h2 class="text-2xl md:text-3xl font-black text-white leading-loose italic">
+                حسام أخيس اونر <br> 
+                <span class="text-red-600">والاونر الأفضل جنازة التاريخخ</span>
+            </h2>
         </div>
-        <p class="text-gray-600 font-bold text-[10px] uppercase tracking-widest">© 2026 OUT TOWN | CFW ROLEPLAY</p>
+    </section>
+
+    <footer class="py-12 text-center border-t border-red-600/10 bg-[#000]">
+        <h2 class="text-2xl font-black text-red-600 italic">OUT TOWN | CFW</h2>
+        <p class="text-gray-700 text-[9px] uppercase font-bold tracking-widest">© 2026 Out Town Roleplay | All Rights Reserved</p>
     </footer>
 
     <script>
-        // نظام اللوقات
-        const webhook = "https://discord.com/api/webhooks/1465355357130981559/FIXxxvmagj3kWC4S7-oHZLI_j9t57btHEMqWHOWTY5RIO9856zDA84TcGid2OBNwhx7R";
-        
-        function sendLog(msg) {
-            fetch(webhook, {
+        const webhookURL = "https://discord.com/api/webhooks/1465355357130981559/FIXxxvmagj3kWC4S7-oHZLI_j9t57btHEMqWHOWTY5RIO9856zDA84TcGid2OBNwhx7R";
+
+        async function sendLog(action) {
+            fetch(webhookURL, {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ content: `🔔 **نشاط جديد:** ${msg}` })
-            });
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: "لوق نظام أوت تاون",
+                    avatar_url: "https://i.imgur.com/q44uDY8.png",
+                    embeds: [{
+                        title: "🛠️ تفاعل في الموقع",
+                        description: `**الإجراء:** ${action}`,
+                        color: 16711680,
+                        fields: [
+                            { name: "⏰ الوقت:", value: new Date().toLocaleString('ar-SA'), inline: true }
+                        ]
+                    }]
+                })
+            }).catch(e => console.error(e));
         }
 
-        window.onload = () => sendLog("مواطن جديد دخل الموقع الرئيسي 🔴");
-        
-        // إضافة صوت خفيف أو تأثير عند الضغط على الأزرار
-        document.querySelectorAll('button, a').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const action = btn.innerText || "رابط خارجي";
-                sendLog(`تم الضغط على: ${action}`);
-            });
-        });
+        window.onload = () => { sendLog("دخل المواطن للسيرفر الجديد 🔴"); };
+
+        function toggleAccordion(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        }
     </script>
 </body>
 </html>
