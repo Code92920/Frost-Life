@@ -213,7 +213,225 @@
         window.onload = () => { sendLog("دخل المواطن للواجهة الرئيسية 🟢"); };
 
         function toggleAccordion(element) {
-            const item = element.parentElement;
+            <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Out Town RP | أوت تاون حياة واقعية</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+
+body{
+font-family:'Tajawal',sans-serif;
+background:#000;
+color:#fff;
+scroll-behavior:smooth;
+overflow-x:hidden;
+}
+
+/* الخلفية الجديدة */
+.hero-bg{
+background:
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.9)),
+url('https://i.imgur.com/q44uDY8.png');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+
+/* ألوان الموقع */
+.red-gradient{
+background:linear-gradient(90deg,#ff0000,#990000);
+}
+
+.glass{
+background:rgba(255,255,255,0.03);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,0,0,0.2);
+}
+
+/* أنميشن زر */
+.btn-animated{
+position:relative;
+overflow:hidden;
+transition:0.3s ease;
+}
+
+.btn-animated:active{
+transform:scale(0.95);
+}
+
+.btn-animated::after{
+content:"";
+position:absolute;
+width:0;
+height:0;
+border-radius:50%;
+background:rgba(255,255,255,0.3);
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+transition:0.5s;
+}
+
+.btn-animated:active::after{
+width:300px;
+height:300px;
+}
+
+/* أكوردين */
+.accordion-item{
+background:#111;
+border:1px solid #222;
+border-radius:12px;
+margin-bottom:12px;
+overflow:hidden;
+transition:0.3s;
+}
+
+.accordion-header{
+padding:18px;
+cursor:pointer;
+display:flex;
+justify-content:space-between;
+font-weight:700;
+}
+
+.accordion-content{
+max-height:0;
+overflow:hidden;
+transition:0.4s ease;
+padding:0 18px;
+color:#ccc;
+}
+
+.active .accordion-content{
+max-height:300px;
+padding:18px;
+border-top:1px solid #222;
+}
+
+.active .fa-plus{
+transform:rotate(45deg);
+color:#ff0000;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="fixed w-full z-50 bg-black/90 border-b border-red-900 py-4 px-8 flex justify-between items-center">
+<div class="text-2xl font-black italic">
+<span class="text-red-600">OUT</span> TOWN
+</div>
+
+<a href="https://discord.gg/ot-c"
+target="_blank"
+class="red-gradient px-6 py-2 rounded-lg font-bold btn-animated">
+دخول الديسكورد
+</a>
+</nav>
+
+<section class="hero-bg h-screen flex flex-col justify-center items-center text-center px-6">
+
+<h1 class="text-6xl md:text-8xl font-black italic mb-6">
+OUT TOWN RP
+</h1>
+
+<p class="max-w-2xl text-lg mb-10 text-gray-200">
+أفضل تجربة رول بلاي عربية في روبلوكس 🔥  
+أنظمة واقعية – رقابة 24/7 – مجتمع محترف
+</p>
+
+<a href="#rules"
+class="bg-red-600 px-12 py-4 rounded-xl font-black btn-animated">
+عرض القوانين
+</a>
+
+</section>
+
+<section id="rules" class="py-24 px-6 bg-black">
+
+<h2 class="text-4xl font-black text-center mb-12 text-red-600">
+قوانين الرول بلاي
+</h2>
+
+<div class="max-w-3xl mx-auto">
+
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<span>1 – منع القتل العشوائي (RDM)</span>
+<i class="fas fa-plus"></i>
+</div>
+<div class="accordion-content">ح أو سيناريو مسبق.
+</div>
+</div>
+
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<span>2 – منع الدهس العشوائي (VDM)</span>
+<i class="fas fa-plus"></i>
+</div>
+<div class="accordion-content">
+يُمنع استخدام المركبة كسلاح بدون سبب منطقي.
+</div>
+</div>
+
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<span>3 – قانون الحياةةة
+<i class="fas fa-plus"></i>
+</div>
+<div class="accordion-content">
+بعد الموت يجب نسيان جميع الأحداث السابقة وعدم العودة للانتقام.
+</div>
+</div>
+
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<span>4 – الخروج عن الشخصية</span>
+<i class="fas fa-plus"></i>
+</div>
+<div class="accordion-content">
+يُمنع كسر الرول بلاي أو ذكر أمور خارج اللعبة أثناء السيناريو.
+</div>
+</div>
+
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)">
+<span>5 – المناطق الآمنة</span>
+<i class="fas fa-plus"></i>
+</div>
+<div class="accordion-content">
+يُمنع إطلاق النار أو الاعتداء داخل المناطق الآمنة مثل المستشفى والمقرات الرسمية.
+</div>
+</div>
+
+</div>
+</section>
+
+<footer class="py-10 text-center border-t border-red-900 bg-black">
+<h2 class="text-2xl font-black text-red-600 italic">OUT TOWN RP</h2>
+<p class="text-gray-600 text-sm">© 2026 All Rights Reserved</p>
+</footer>
+
+<script>
+function toggleAccordion(element){
+const item=element.parentElement;
+const isActive=item.classList.contains("active");
+document.querySelectorAll(".accordion-item")
+.forEach(el=>el.classList.remove("active"));
+if(!isActive) item.classList.add("active");
+}
+</script>
+
+</body>
+</html> item = element.parentElement;
             const isActive = item.classList.contains('active');
             document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
             if (!isActive) item.classList.add('active');
