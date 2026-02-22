@@ -1,199 +1,200 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frost Life RP | فروست لايف حياة واقعية</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
-        
-        body { 
-            font-family: 'Tajawal', sans-serif; 
-            background-color: #000b18; 
-            color: white; 
-            scroll-behavior: smooth; 
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frost Life</title>
 
-        /* خلفية ثلجية */
-        .hero-bg { 
-            background: linear-gradient(rgba(0, 11, 24, 0.7), rgba(0, 11, 24, 0.9)), 
-            url('https://images.unsplash.com/photo-1483354483454-4cd359948304?auto=format&fit=crop&q=80&w=2070'); 
-            background-size: cover; 
-            background-position: center; 
-            background-attachment: fixed;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Tahoma', sans-serif;
+}
 
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .blue-gradient { background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%); }
-        
-        /* أنميشن الثلج المتساقط */
-        #snow-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
+body{
+    background: url('frost-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
 
-        .maintenance-tag {
-            background: rgba(255, 193, 7, 0.2);
-            color: #ffc107;
-            border: 1px solid #ffc107;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
+/* شريط التنقل */
+nav{
+    background: rgba(0,0,0,0.8);
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter: blur(6px);
+}
 
-        .accordion-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(58, 123, 213, 0.2); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
-        .accordion-header { padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #fff; transition: 0.3s; }
-        .accordion-header:hover { background: rgba(58, 123, 213, 0.1); }
-        .accordion-content { max-height: 0; padding: 0 25px; transition: all 0.4s ease-in-out; color: #cbd5e1; font-size: 0.95rem; overflow: hidden; }
-        .active .accordion-content { max-height: 300px; padding: 20px 25px; border-top: 1px solid rgba(58, 123, 213, 0.2); }
-        .active .fa-chevron-down { transform: rotate(180deg); color: #00d2ff; }
+nav .logo{
+    font-size:22px;
+    font-weight:bold;
+}
 
-        .content-z { position: relative; z-index: 2; }
-    </style>
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#00cfff;
+}
+
+/* القسم الرئيسي */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background: rgba(0,0,0,0.6);
+}
+
+.hero h1{
+    font-size:70px;
+    text-shadow:0 0 20px #00cfff;
+}
+
+.hero p{
+    max-width:800px;
+    margin-top:20px;
+    font-size:18px;
+    line-height:1.8;
+}
+
+/* الأقسام */
+.section{
+    padding:80px 40px;
+    background: rgba(0,0,0,0.8);
+}
+
+.section h2{
+    margin-bottom:30px;
+    font-size:32px;
+    text-align:center;
+    color:#00cfff;
+}
+
+.rules{
+    max-width:900px;
+    margin:auto;
+    line-height:1.9;
+}
+
+.founders{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    text-align:center;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    padding:20px;
+    border-radius:15px;
+    width:250px;
+    backdrop-filter: blur(5px);
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:black;
+}
+</style>
 </head>
+
 <body>
 
-    <canvas id="snow-canvas"></canvas>
+<nav>
+    <div class="logo">❄ Frost Life</div>
+    <ul>
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#rules">القوانين</a></li>
+        <li><a href="#founders">المؤسسين</a></li>
+        <li><a href="#">الدسكورد</a></li>
+    </ul>
+</nav>
 
-    <div class="content-z">
-        <nav class="fixed w-full z-50 glass py-4 px-6 md:px-12 flex justify-between items-center">
-            <div class="flex flex-col">
-                <div class="text-xl md:text-2xl font-black italic uppercase leading-none">
-                    FROST <span class="text-cyan-400">LIFE</span>
-                </div>
-                <div class="flex items-center mt-1">
-                    <span class="maintenance-tag">قيد الصيانة <i class="fas fa-tools"></i></span>
-                </div>
-            </div>
-            <div class="hidden md:flex gap-8 font-bold text-[10px] uppercase tracking-widest">
-                <a href="#rules" class="hover:text-cyan-400 transition">القوانين</a>
-                <a href="#about" class="hover:text-cyan-400 transition">عن فروست</a>
-            </div>
-            <a href="https://discord.gg/3d6DfHhMz" target="_blank" class="blue-gradient px-6 py-2 rounded-lg font-black text-xs uppercase shadow-lg shadow-cyan-500/20">دخول الديسكورد</a>
-        </nav>
+<section class="hero">
+    <h1>Frost Life</h1>
+    <p>
+        سيرفر فروست لايف هو مجتمع متكامل يهدف لتقديم تجربة حياة واقعية فريدة من نوعها،
+        نركز على الاحترافية والعدالة وبناء مجتمع مترابط وممتع لجميع اللاعبين.
+    </p>
+</section>
 
-        <section class="hero-bg h-screen flex flex-col justify-center items-center text-center px-6">
-            <div class="text-cyan-400 text-[10px] font-black px-4 py-1 rounded-full mb-6 tracking-[0.3em] uppercase border border-cyan-400/30 bg-cyan-400/10">WINTER IS COMING</div>
-            <h1 class="text-6xl md:text-9xl font-black mb-6 tracking-tighter uppercase italic text-white drop-shadow-2xl">FROST LIFE</h1>
-            <div class="max-w-2xl text-slate-200 text-lg md:text-xl font-bold mb-10 leading-relaxed">
-                تجربة الحياة الواقعية في أبرد بقاع الأرض. عالم متجمد مليء بالتحديات والأنظمة الفريدة. السيرفر حالياً يخضع لأعمال تطوير لضمان أفضل تجربة لكم.
-            </div>
-            <div class="flex flex-col md:flex-row gap-4">
-                <a href="#rules" class="bg-white text-blue-900 px-12 py-4 rounded-xl font-black uppercase text-sm hover:scale-105 transition-all shadow-xl">قوانين البرد</a>
-                <a href="https://discord.gg/3d6DfHhMz" target="_blank" class="glass text-white px-12 py-4 rounded-xl font-black uppercase text-sm border border-cyan-400/30 hover:bg-cyan-400/10 transition-all">تحديثات الصيانة</a>
-            </div>
-        </section>
+<section class="section" id="rules">
+<h2>قوانين الرول بلاي</h2>
+<div class="rules">
+1- يمنع الخروج عن الرول بلاي (Fail RP). <br>
+2- يمنع القتل العشوائي (RDM). <br>
+3- يمنع الدهس العشوائي (VDM). <br>
+4- يمنع استخدام الميتا قيم. <br>
+5- يمنع الباور قيم. <br>
+6- احترام جميع اللاعبين وعدم الاستفزاز. <br>
+7- الالتزام بسيناريوهات منطقية. <br>
+8- يمنع استغلال الثغرات. <br>
+9- يمنع التهديد خارج إطار اللعبة. <br>
+10- القرارات الإدارية نهائية. <br><br>
 
-        <section id="rules" class="py-24 px-6 bg-[#000b18]">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl font-black mb-4 text-center italic text-white uppercase">دستور <span class="text-cyan-400">فروست لايف</span></h2>
-                <p class="text-center text-slate-400 mb-12">التزامك بالقوانين يضمن لك ولغيرك تجربة رول بلاي ممتعة</p>
-                
-                <div class="accordion text-right">
-                    <h3 class="text-cyan-400 font-bold mb-4 mr-2">قوانين الرول بلاي (Roleplay)</h3>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>1 – القتل العشوائي (RDM)</span><i class="fas fa-chevron-down text-xs"></i></div>
-                        <div class="accordion-content">يمنع منعاً باتاً قتل أي مواطن دون سبب مقنع أو تفاعل مسبق. يجب أن يكون هناك سيناريو رول بلاي يؤدي لهذا الفعل.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>2 – الخوف على الحياة (Fear RP)</span><i class="fas fa-chevron-down text-xs"></i></div>
-                        <div class="accordion-content">يجب عليك تمثيل الخوف إذا تعرضت لتهديد مباشر بسلاح. حياتك في السيرفر ثمينة، تصرف وكأنها حياتك الحقيقية.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>3 – الخروج عن الشخصية (Fail RP)</span><i class="fas fa-chevron-down text-xs"></i></div>
-                        <div class="accordion-content">يمنع التحدث عن أمور خارج اللعبة (OOC) داخل الرول بلاي، أو ذكر مصطلحات مثل "برمجيات" أو "إدارة" أثناء السيناريو.</div>
-                    </div>
+<h2 style="margin-top:40px;">قوانين الدسكورد</h2>
+1- يمنع السب والشتم. <br>
+2- يمنع نشر روابط خارجية بدون إذن. <br>
+3- يمنع السبام أو الإزعاج. <br>
+4- احترام الطاقم الإداري. <br>
+5- يمنع نشر محتوى غير لائق. <br>
+6- يمنع انتحال الشخصيات. <br>
+7- الالتزام بالقنوات المخصصة لكل موضوع. <br>
+8- يمنع نشر معلومات شخصية. <br>
+9- يمنع إثارة المشاكل بين الأعضاء. <br>
+10- مخالفة القوانين تعرضك للعقوبات. <br>
+</div>
+</section>
 
-                    <h3 class="text-cyan-400 font-bold mt-8 mb-4 mr-2">قوانين السيرفر العامة</h3>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>1 – الاحترام المتبادل</span><i class="fas fa-chevron-down text-xs"></i></div>
-                        <div class="accordion-content">يمنع السب، القذف، أو التنمر على أي عضو داخل السيرفر سواء في الديسكورد أو اللعبة. الاحترام هو أساس مجتمع فروست لايف.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>2 – استغلال الثغرات (Glitches)</span><i class="fas fa-chevron-down text-xs"></i></div>
-                        <div class="accordion-content">أي محاولة لاستغلال ثغرة برمجية في اللعبة بدلاً من الإبلاغ عنها ستعرضك للنفي النهائي من السيرفر.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>3 – الأسماء المستعارة</span><i class="fas fa-chevron-down text-xs"></i></div>
-                        <div class="accordion-content">يجب أن يكون اسم الشخصية بالكامل واقعياً وغير مستفز، ويمنع استخدام أسماء المشاهير أو الشخصيات السياسية.</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="section" id="founders">
+<h2>المؤسسين</h2>
+<div class="founders">
 
-        <footer class="py-12 text-center border-t border-white/5 bg-[#000811]">
-            <h2 class="text-2xl font-black text-cyan-400 italic">FROST LIFE | CFW</h2>
-            <p class="text-slate-500 text-[9px] uppercase font-bold tracking-widest mt-2">© 2026 Frost Life Roleplay | Under Maintenance</p>
-        </footer>
-    </div>
+<div class="card">
+<h3>حسام</h3>
+<p>الأونر<br>مبرمج الماب الوحيد</p>
+</div>
 
-    <script>
-        // أنميشن الثلج
-        const canvas = document.getElementById('snow-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, snowflakes;
+<div class="card">
+<h3>أبو شادو</h3>
+<p>المؤسس الثاني<br>المطور للدسكورد</p>
+</div>
 
-        function init() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-            snowflakes = [];
-            for (let i = 0; i < 150; i++) {
-                snowflakes.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    r: Math.random() * 3 + 1,
-                    d: Math.random() * 1
-                });
-            }
-        }
+<div class="card">
+<h3>أردني كح</h3>
+<p>المؤسس الثالث<br>غير متواجد حالياً في الإدارة لأسباب غير معلومة</p>
+</div>
 
-        function draw() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            ctx.beginPath();
-            for (let i = 0; i < snowflakes.length; i++) {
-                const f = snowflakes[i];
-                ctx.moveTo(f.x, f.y);
-                ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
-            }
-            ctx.fill();
-            update();
-        }
+</div>
+</section>
 
-        function update() {
-            for (let i = 0; i < snowflakes.length; i++) {
-                const f = snowflakes[i];
-                f.y += Math.pow(f.d, 2) + 1;
-                f.x += Math.sin(f.y / 50);
-                if (f.y > height) {
-                    snowflakes[i] = { x: Math.random() * width, y: 0, r: f.r, d: f.d };
-                }
-            }
-        }
+<footer>
+© 2026 Frost Life - جميع الحقوق محفوظة
+</footer>
 
-        window.addEventListener('resize', init);
-        init();
-        setInterval(draw, 33);
-
-        // التحكم في المنسدلات
-        function toggleAccordion(element) {
-            const item = element.parentElement;
-            const isActive = item.classList.contains('active');
-            document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
-            if (!isActive) item.classList.add('active');
-        }
-    </script>
 </body>
 </html>
