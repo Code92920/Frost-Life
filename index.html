@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frost Life RP | فروست لايف روبلوكس</title>
+    <title>Out Town RP | أوت تاون روبلوكس</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -18,17 +18,25 @@
         }
 
         .hero-bg { 
-            background: linear-gradient(rgba(0, 20, 40, 0.7), rgba(0, 8, 20, 0.9)), 
-            url('https://i.imgur.com/MJChfYJ.jpeg'); 
+            background: linear-gradient(rgba(0, 10, 20, 0.6), rgba(0, 5, 10, 0.85)), 
+            url('https://i.imgur.com/yiPV7Ba.png'); 
             background-size: cover; 
             background-position: center; 
             background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* تنسيق الشعار الرئيسي ليكون متناسباً */
+        .main-logo {
+            max-width: 500px;
+            width: 85%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.2));
         }
 
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(0, 210, 255, 0.2); }
         .blue-gradient { background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%); }
-        
-        #snow-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 1; }
 
         .maintenance-tag {
             background: rgba(0, 210, 255, 0.1);
@@ -85,11 +93,9 @@
 </head>
 <body>
 
-    <canvas id="snow-canvas"></canvas>
-
     <div class="content-z">
         <nav class="fixed w-full z-50 glass py-5 px-6 md:px-20 flex justify-between items-center">
-            <div class="text-2xl font-black italic uppercase leading-none"><span class="text-cyan-400">FROST</span> LIFE</div>
+            <div class="text-2xl font-black italic uppercase leading-none"><span class="text-cyan-400">OUT</span> TOWN</div>
             <div class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
                 <a href="#rules" class="hover:text-cyan-400 transition">القوانين</a>
                 <a href="#founders" class="hover:text-cyan-400 transition">المؤسسين</a>
@@ -97,20 +103,22 @@
             <a href="https://discord.gg/3d6DfHhMz" target="_blank" class="blue-gradient px-8 py-2 rounded-lg font-black text-xs uppercase shadow-lg shadow-cyan-500/30">ديسكورد</a>
         </nav>
 
-        <section class="hero-bg h-screen flex flex-col justify-center items-center text-center px-6">
-            <div class="maintenance-tag mb-6 uppercase">Under Maintenance | قيد الصيانة</div>
-            <h1 class="text-6xl md:text-[110px] font-black mb-4 tracking-tighter italic leading-none">FROST LIFE</h1>
+        <section class="hero-bg flex flex-col justify-center items-center text-center px-6 pt-16">
+            <div class="maintenance-tag mb-8 uppercase">Under Maintenance | قيد الصيانة</div>
+            
+            <img src="https://i.imgur.com/ZiX24pz.png" alt="Out Town Logo" class="main-logo mb-6">
+            
             <p class="text-cyan-400 font-black text-sm md:text-lg mb-8 tracking-[0.2em] uppercase">المجتمع الأقوى للحياة الواقعية في روبلوكس</p>
             
             <div class="max-w-2xl glass p-8 rounded-2xl mb-10">
                 <p class="text-slate-200 font-bold leading-relaxed">
-                    سيرفر فروست لايف يهدف لتقديم تجربة فريدة، نركز على الاحترافية والعدالة وبناء مجتمع مترابط. السيرفر حالياً تحت الصيانة لتجهيز أفضل الأنظمة لكم.
+                    سيرفر أوت تاون يهدف لتقديم تجربة فريدة، نركز على الاحترافية والعدالة وبناء مجتمع مترابط. السيرفر حالياً تحت الصيانة لتجهيز أفضل الأنظمة لكم.
                 </p>
             </div>
 
             <div class="flex flex-col md:flex-row gap-4">
-                <a href="#rules" class="bg-white text-blue-900 px-12 py-4 rounded-xl font-black uppercase text-sm hover:scale-105 transition-all shadow-xl">دستور السيرفر</a>
-                <a href="https://discord.gg/3d6DfHhMz" target="_blank" class="glass text-white px-12 py-4 rounded-xl font-black uppercase text-sm border border-cyan-400/30 hover:bg-cyan-400/10 transition-all">الدعم الفني</a>
+                <a href="#rules" class="bg-white text-blue-900 px-12 py-4 rounded-xl font-black uppercase text-sm hover:scale-105 transition-all shadow-xl">قوانين المدينة</a>
+                <a href="https://discord.gg/3d6DfHhMz" target="_blank" class="glass text-white px-12 py-4 rounded-xl font-black uppercase text-sm border border-cyan-400/30 hover:bg-cyan-400/10 transition-all">تذاكر الدعم الفني</a>
             </div>
         </section>
 
@@ -136,7 +144,7 @@
 
         <section id="rules" class="py-24 px-6">
             <div class="max-w-4xl mx-auto text-right">
-                <h2 class="section-title text-center"><span class="text-cyan-400">📜</span> قوانين فروست لايف</h2>
+                <h2 class="section-title text-center"><span class="text-cyan-400">📜</span> قوانين أوت تاون</h2>
                 
                 <div class="rule-category-title">قوانين الرول بلاي</div>
                 <div class="accordion mb-12">
@@ -159,26 +167,6 @@
                     <div class="accordion-item">
                         <div class="accordion-header" onclick="toggleAccordion(this)"><span>5 – منع العشوائية (RDM / VDM)</span><i class="fas fa-plus text-cyan-400"></i></div>
                         <div class="accordion-content">ممنوع القتل أو الدعس أو الاعتداء بدون سبب منطقي داخل الرول بلاي. أي تصعيد لازم يكون له سبب واضح وقصة.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>6 – السيناريوهات الواقعية</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">أي جريمة أو مشكلة لازم تكون لها قصة وأسباب. ممنوع تسوي سرقات أو إطلاق نار بدون تمهيد.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>7 – تقدير الحياة (Value of Life)</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">حياتك لها قيمة، لا تضحي فيها بدون سبب منطقي. إذا كنت بموقف خطير حاول تحافظ على حياتك.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>8 – الإصابات (New Life Rule)</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">إذا ماتت شخصيتك تنسى آخر الأحداث اللي صارت لك قبل موتك. ما ترجع تنتقم مباشرة بعد ما تموت.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>9 – الاحترام العام</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">احترام جميع اللاعبين والإدارة. ممنوع السب أو التقليل خارج إطار الرول بلاي.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>10 – استغلال الثغرات</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">يمنع استغلال أي قلتش أو خطأ باللعبة. أي استغلال يعرضك للعقوبة المباشرة.</div>
                     </div>
                 </div>
 
@@ -204,72 +192,16 @@
                         <div class="accordion-header" onclick="toggleAccordion(this)"><span>5 - الروابط والإعلانات</span><i class="fas fa-plus text-cyan-400"></i></div>
                         <div class="accordion-content">يمنع نشر روابط أو إعلانات لسيرفرات أو منصات أخرى بدون إذن مسبق من الإدارة.</div>
                     </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>6 - قرارات الإدارة</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">قرارات الإدارة تُحترم، وأي اعتراض يكون بشكل رسمي عن طريق فتح تذكرة دعم فني.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>7 - الهوية الشخصية</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">يمنع وضع أسماء أو صور شخصية مسيئة، مخلة بالآداب أو غير لائقة.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>8 - الرومات الصوتية</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">يمنع الإزعاج في الرومات الصوتية أو تشغيل أصوات مزعجة ومنفرة للأعضاء.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>9 - تذاكر الدعم</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">يمنع فتح تذاكر (Tickets) بدون سبب واضح أو بهدف المزح وإضاعة وقت الإدارة.</div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)"><span>10 - استغلال النظام</span><i class="fas fa-plus text-cyan-400"></i></div>
-                        <div class="accordion-content">استغلال الثغرات أو التحايل على القوانين يعرضك للعقوبة. تبدأ العقوبات من تنبيه وقد تصل لباند دائم.</div>
-                    </div>
                 </div>
             </div>
         </section>
 
         <footer class="py-12 text-center border-t border-white/5">
-            <p class="text-slate-600 font-black text-[10px] tracking-[0.5em] uppercase">© 2026 FROST LIFE | ROBLOX ROLEPLAY</p>
+            <p class="text-slate-600 font-black text-[10px] tracking-[0.5em] uppercase">© 2026 OUT TOWN | ROBLOX ROLEPLAY</p>
         </footer>
     </div>
 
     <script>
-        const canvas = document.getElementById('snow-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, snowflakes;
-
-        function init() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-            snowflakes = [];
-            for (let i = 0; i < 120; i++) {
-                snowflakes.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 3 + 1, d: Math.random() * 0.5 + 0.3 });
-            }
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-            ctx.beginPath();
-            for (let f of snowflakes) {
-                ctx.moveTo(f.x, f.y);
-                ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
-            }
-            ctx.fill();
-            for (let f of snowflakes) {
-                f.y += f.d;
-                f.x += Math.sin(f.y / 40);
-                if (f.y > height) f.y = -10;
-            }
-            requestAnimationFrame(draw);
-        }
-
-        window.addEventListener('resize', init);
-        init();
-        draw();
-
         function toggleAccordion(element) {
             const item = element.parentElement;
             const isActive = item.classList.contains('active');
